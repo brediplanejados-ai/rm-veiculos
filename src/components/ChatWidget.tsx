@@ -38,6 +38,12 @@ export const ChatWidget: React.FC = () => {
   const playPopSound = (variant: 'open' | 'message' | 'bubble' = 'message') => {
     try {
       const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      
+      // Handle browser autoplay policy: resume context if it's suspended
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
       const oscillator = audioCtx.createOscillator();
       const gainNode = audioCtx.createGain();
 
@@ -48,26 +54,26 @@ export const ChatWidget: React.FC = () => {
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
         oscillator.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.1);
-        gainNode.gain.setValueAtTime(0.4, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
       } else if (variant === 'bubble') {
         oscillator.type = 'triangle';
         oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
         oscillator.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.15);
-        gainNode.gain.setValueAtTime(0.4, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
       } else {
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
         oscillator.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.05);
-        gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
       }
 
       oscillator.start();
       oscillator.stop(audioCtx.currentTime + 0.15);
     } catch (e) {
-      console.warn('Som bloqueado:', e);
+      console.warn('AudioContext blocked or error:', e);
     }
   };
 
