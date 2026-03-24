@@ -307,10 +307,13 @@ Posso confirmar?`;
         <AnimatePresence>
           {showBubble && !isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: 50, x: 30, scale: 0.9 }}
+              initial={{ opacity: 0, y: 60, x: 30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
               exit={{ opacity: 0, y: 30, scale: 0.9 }}
-              transition={{ type: 'spring', damping: 20, stiffness: 150 }}
+              transition={{ 
+                duration: 0.8, 
+                ease: [0.22, 1, 0.36, 1] // Smooth ease-out
+              }}
               className="absolute bottom-[88px] right-0 w-[300px] md:w-[380px] bg-white/95 backdrop-blur-md rounded-sm shadow-3xl border border-white/50 p-6 flex flex-col items-start text-left cursor-default overflow-visible z-[101]"
               onClick={(e) => e.stopPropagation()}
             >
