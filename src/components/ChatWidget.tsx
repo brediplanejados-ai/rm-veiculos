@@ -34,14 +34,47 @@ export const ChatWidget: React.FC = () => {
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const playPopSound = (variant: 'open' | 'message' = 'message') => {
+    try {
+      const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      if (variant === 'open') {
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.1);
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+      } else {
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.05);
+        gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+      }
+
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 0.1);
+    } catch (e) {
+      console.warn('Som bloqueado:', e);
+    }
+  };
+
   useEffect(() => {
+
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
 
   const addMessage = (text: string, sender: 'bot' | 'user') => {
+    if (sender === 'bot') playPopSound('message');
     const newMessage: Message = {
+
       id: Math.random().toString(36).substr(2, 9),
       text,
       sender,
@@ -217,9 +250,13 @@ Posso confirmar?`;
     <>
       {/* Botão Flutuante */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          if (!isOpen) playPopSound('open');
+          setIsOpen(!isOpen);
+        }}
         className="fixed bottom-6 right-6 z-[100] w-16 h-16 flex items-center justify-center rounded-full precision-gradient text-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group"
       >
+
         <AnimatePresence mode='wait'>
           {isOpen ? (
             <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
