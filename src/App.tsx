@@ -203,13 +203,15 @@ export default function App() {
               transition={{ duration: 0.8 }}
               className="max-w-2xl space-y-8"
             >
-              <div className="inline-block border-l-4 border-primary pl-4">
-                <span className="text-primary font-headline font-bold tracking-widest uppercase text-sm">Tecnologia de Ponta</span>
+              <div className="inline-flex items-center gap-2">
+                <span className="bg-primary px-3 py-1 text-white font-headline font-bold tracking-widest uppercase text-xs rounded-sm shadow-lg shadow-primary/20">
+                  Tecnologia de Ponta
+                </span>
               </div>
-              <h1 className="text-white font-headline text-5xl md:text-7xl font-black leading-tight tracking-tighter">
-                SOLUÇÕES COMPLETAS COM <span className="text-primary">PRECISÃO</span> E CONFIANÇA.
+              <h1 className="text-white font-headline text-5xl md:text-7xl font-black leading-tight tracking-tighter text-shadow-md">
+                SOLUÇÕES COMPLETAS COM <span className="text-primary-container">PRECISÃO</span> E CONFIANÇA.
               </h1>
-              <p className="text-zinc-300 text-lg md:text-xl font-light leading-relaxed">
+              <p className="text-zinc-300 text-lg md:text-xl font-medium leading-relaxed text-shadow-sm">
                 Especialistas em auto elétrica, injeção eletrônica, ar-condicionado e acessórios. Tecnologia de última geração para cuidar da performance do seu veículo.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
