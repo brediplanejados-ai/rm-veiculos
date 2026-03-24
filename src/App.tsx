@@ -514,6 +514,27 @@ export default function App() {
         </div>
       </footer>
 
+      {/* Developer Credit */}
+      <div className="flex justify-center pb-12 pt-4 bg-zinc-50">
+        <div className="inline-flex items-center gap-3 px-8 py-3 bg-zinc-950 rounded-full border border-zinc-800 shadow-2xl hover:scale-105 transition-all duration-500 group">
+          <span className="text-zinc-500 text-[10px] uppercase font-black tracking-[0.2em]">Site desenvolvido por</span>
+          <div className="flex items-center text-sm font-black tracking-tighter">
+            <span className="text-white group-hover:text-primary transition-colors duration-500">b</span>
+            <span className="text-[#005fb8]">R</span>
+            <span className="text-[#e31b23]">edi</span>
+          </div>
+          <span className="w-1.5 h-1.5 bg-zinc-800 rounded-full mx-1 group-hover:bg-primary/50 transition-colors" />
+          <a 
+            href="https://wa.me/5515998148402" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-zinc-400 text-[11px] font-black hover:text-white transition-colors tracking-widest"
+          >
+            (15) 99814-8402
+          </a>
+        </div>
+      </div>
+
       <ChatWidget />
     </div>
 
