@@ -1,0 +1,30 @@
+<svg width="800" height="220" viewBox="0 0 800 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Car Silhouette (Red) -->
+  <g transform="translate(100, 10) scale(1.4)">
+    <path d="M20 50C25 48 40 42 60 40C80 38 120 40 160 48C190 54 220 65 240 75H180C160 75 130 70 100 68C70 66 30 70 20 72C10 74 50 50 20 50Z" fill="#FF4444" />
+    <path d="M190 48C205 50 230 60 250 70C270 80 280 90 282 95H270C250 95 230 90 210 85C190 80 190 48 190 48Z" fill="#FF4444" />
+  </g>
+
+  <!-- Logo Base Structure -->
+  <g transform="translate(60, 150) skewX(-20)">
+    <!-- Red Accent behind RM -->
+    <path d="M15 -60L25 -65L20 -5H5L15 -60Z" fill="#FF4444" />
+    
+    <!-- RM Text (White) -->
+    <path d="M0 0V-55H35C45 -55 55 -50 55 -35C55 -25 50 -20 40 -18L60 0H42L25 -18H15V0H0ZM15 -30H35C40 -30 42 -32 42 -35C42 -38 40 -40 35 -40H15V-30Z" fill="white" />
+    <!-- Connection -->
+    <path d="M55 -35H65V0H50L55 -35Z" fill="white" />
+    <!-- M -->
+    <path d="M65 0V-55H80L100 -25L120 -55H135V0H125V-45L100 -10L75 -40V0H65Z" fill="white" />
+
+    <!-- AUTO CENTER Background Block -->
+    <path d="M140 -50H550L540 0H130L140 -50Z" fill="white" fill-opacity="0.1" stroke="white" stroke-width="2" />
+    
+    <!-- AUTO CENTER Text (White) -->
+    <text x="160" y="-10" font-family="'Inter', 'Arial Black', sans-serif" font-weight="900" font-size="46" fill="white" letter-spacing="-1">AUTO CENTER</text>
+
+    <!-- Bottom Lines -->
+    <rect x="-10" y="5" width="560" height="6" fill="#FF4444" />
+    <rect x="-10" y="11" width="560" height="2" fill="white" />
+  </g>
+</svg>
