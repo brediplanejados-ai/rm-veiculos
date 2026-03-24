@@ -35,7 +35,7 @@ export const ChatWidget: React.FC = () => {
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const playPopSound = (variant: 'open' | 'message' = 'message') => {
+  const playPopSound = (variant: 'open' | 'message' | 'bubble' = 'message') => {
     try {
       const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
       const oscillator = audioCtx.createOscillator();
@@ -48,18 +48,24 @@ export const ChatWidget: React.FC = () => {
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
         oscillator.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.1);
-        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.4, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+      } else if (variant === 'bubble') {
+        oscillator.type = 'triangle';
+        oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.15);
+        gainNode.gain.setValueAtTime(0.4, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
       } else {
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
         oscillator.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.05);
-        gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
       }
 
       oscillator.start();
-      oscillator.stop(audioCtx.currentTime + 0.1);
+      oscillator.stop(audioCtx.currentTime + 0.15);
     } catch (e) {
       console.warn('Som bloqueado:', e);
     }
@@ -98,7 +104,7 @@ export const ChatWidget: React.FC = () => {
     const timer = setTimeout(() => {
       if (!isOpen) {
         setShowBubble(true);
-        playPopSound('open');
+        playPopSound('bubble');
       }
     }, 5000);
     return () => clearTimeout(timer);
