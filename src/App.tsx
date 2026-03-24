@@ -446,21 +446,23 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="h-[450px] bg-surface-container-high relative group">
-                <div className="absolute inset-0 grayscale contrast-125 opacity-70 group-hover:grayscale-0 transition-all duration-1000">
-                  <img 
-                    src={mapItapeva} 
-                    alt="Mapa Itapeva"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+              <div className="h-[500px] bg-surface-container-high relative group border border-zinc-200 overflow-hidden rounded-sm shadow-inner">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!4v1774395077483!6m8!1m7!1sNNi0aKXOglzlkjf7xoMVYw!2m2!1d-23.97952971132115!2d-48.87802750710429!3f108.95499!4f0!5f0.7820865974627469"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full grayscale contrast-125 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000"
+                ></iframe>
 
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-white p-6 shadow-2xl relative">
+                <div className="absolute bottom-6 right-6 z-10">
+                  <div className="bg-white/95 backdrop-blur-md p-6 shadow-2xl relative border border-zinc-100 rounded-sm transition-transform duration-500 hover:-translate-y-2">
                     <Pin className="text-primary w-8 h-8 absolute -top-10 left-1/2 -translate-x-1/2 fill-primary" />
-                    <p className="font-headline font-black text-on-surface tracking-tighter">RM AUTO CENTER</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=R.+Sinhô+de+Camargo,+425+-+Centro,+Itapeva+-+SP,+18400-550" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-primary uppercase tracking-widest mt-2 block hover:underline">Ver no Google Maps</a>
-
+                    <p className="font-headline font-black text-on-surface tracking-tighter text-sm mb-1 uppercase">RM AUTO CENTER</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=R.+Sinhô+de+Camargo,+425+-+Centro,+Itapeva+-+SP,+18400-550" target="_blank" rel="noopener noreferrer" className="text-[10px] font-black text-primary uppercase tracking-[0.2em] block hover:underline">Navegar com GPS</a>
                   </div>
                 </div>
               </div>
