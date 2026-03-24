@@ -34,12 +34,28 @@ export const ChatWidget: React.FC = () => {
   const [showBubble, setShowBubble] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
+
+  useEffect(() => {
+    const unlockAudio = () => {
+      if (!audioCtxRef.current) {
+        audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+      }
+      if (audioCtxRef.current.state === 'suspended') {
+        audioCtxRef.current.resume();
+      }
+    };
+    window.addEventListener('click', unlockAudio, { once: true });
+    window.addEventListener('touchstart', unlockAudio, { once: true });
+  }, []);
 
   const playPopSound = (variant: 'open' | 'message' | 'bubble' = 'message') => {
     try {
-      const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      if (!audioCtxRef.current) {
+        audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+      }
+      const audioCtx = audioCtxRef.current;
       
-      // Handle browser autoplay policy: resume context if it's suspended
       if (audioCtx.state === 'suspended') {
         audioCtx.resume();
       }
@@ -291,10 +307,11 @@ Posso confirmar?`;
         <AnimatePresence>
           {showBubble && !isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.8 }}
-              className="absolute bottom-20 right-0 w-[300px] md:w-[350px] bg-white/90 backdrop-blur-md rounded-sm shadow-3xl border border-white/50 p-6 flex flex-col items-start text-left cursor-default overflow-visible"
+              initial={{ opacity: 0, y: 50, x: 30, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 30, scale: 0.9 }}
+              transition={{ type: 'spring', damping: 20, stiffness: 150 }}
+              className="absolute bottom-[88px] right-0 w-[300px] md:w-[380px] bg-white/95 backdrop-blur-md rounded-sm shadow-3xl border border-white/50 p-6 flex flex-col items-start text-left cursor-default overflow-visible z-[101]"
               onClick={(e) => e.stopPropagation()}
             >
               <button 
