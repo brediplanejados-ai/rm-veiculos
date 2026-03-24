@@ -308,9 +308,9 @@ Posso confirmar?`;
               </button>
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-widest text-primary">Assistente Online RM</span>
+                <span className="text-[12px] font-black uppercase tracking-widest text-primary">Assistente Online RM</span>
               </div>
-              <p className="text-zinc-800 text-sm font-medium leading-relaxed mb-4">
+              <p className="text-zinc-800 text-base font-medium leading-relaxed mb-4">
                 Olá! Precisa de manutenção? Estou aqui para te ajudar a agendar a avaliação do seu veículo agora mesmo.
               </p>
               <button 
@@ -320,7 +320,7 @@ Posso confirmar?`;
                   setIsOpen(true);
                   playPopSound('open');
                 }}
-                className="precision-gradient text-white px-5 py-3 rounded-sm text-xs font-bold uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-105 transition-transform text-center w-full sm:w-auto"
+                className="precision-gradient text-white px-5 py-3 rounded-sm text-sm font-bold uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-105 transition-transform text-center w-full sm:w-auto"
               >
                 Agendar Avaliação
               </button>
@@ -363,7 +363,7 @@ Posso confirmar?`;
                 </div>
                 <div>
                   <h3 className="font-headline font-bold text-lg leading-tight">RM Auto Center</h3>
-                  <p className="text-white/70 text-xs uppercase tracking-widest font-bold">Assistente Virtual</p>
+                  <p className="text-white/70 text-[11px] uppercase tracking-widest font-bold">Assistente Virtual</p>
                 </div>
               </div>
             </div>
@@ -384,7 +384,7 @@ Posso confirmar?`;
                   )}
                 >
                   <div className={cn(
-                    "p-4 rounded-sm text-sm font-body leading-relaxed",
+                    "p-4 rounded-sm text-base font-body leading-relaxed",
                     msg.sender === 'bot' 
                       ? "bg-white border border-zinc-100 text-on-surface shadow-sm" 
                       : "precision-gradient text-white"
@@ -396,7 +396,7 @@ Posso confirmar?`;
                       </React.Fragment>
                     ))}
                   </div>
-                  <span className="text-[10px] text-zinc-400 mt-1 uppercase font-bold tracking-wider">
+                  <span className="text-[11px] text-zinc-400 mt-1 uppercase font-bold tracking-wider">
                     {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </motion.div>
@@ -412,7 +412,7 @@ Posso confirmar?`;
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    className="w-full p-4 pr-12 bg-zinc-50 border border-zinc-200 rounded-sm focus:outline-none focus:border-primary transition-colors text-sm font-body"
+                    className="w-full p-4 pr-12 bg-zinc-50 border border-zinc-200 rounded-sm focus:outline-none focus:border-primary transition-colors text-base font-body"
                   />
                 ) : step === 'TIME' ? (
                   <input 
@@ -420,7 +420,7 @@ Posso confirmar?`;
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    className="w-full p-4 pr-12 bg-zinc-50 border border-zinc-200 rounded-sm focus:outline-none focus:border-primary transition-colors text-sm font-body"
+                    className="w-full p-4 pr-12 bg-zinc-50 border border-zinc-200 rounded-sm focus:outline-none focus:border-primary transition-colors text-base font-body"
                   />
                 ) : (
                   <input
@@ -430,7 +430,7 @@ Posso confirmar?`;
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                     disabled={step === 'CONFIRMED'}
-                    className="w-full p-4 pr-12 bg-zinc-50 border border-zinc-200 rounded-sm focus:outline-none focus:border-primary transition-colors text-sm font-body placeholder:text-zinc-400"
+                    className="w-full p-4 pr-12 bg-zinc-50 border border-zinc-200 rounded-sm focus:outline-none focus:border-primary transition-colors text-base font-body placeholder:text-zinc-400"
                   />
                 )}
                 <button
