@@ -76,7 +76,7 @@ export const ChatWidget: React.FC = () => {
         oscillator.type = 'triangle';
         oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
         oscillator.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.15);
-        gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.8, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
       } else {
         oscillator.type = 'sine';
@@ -311,8 +311,8 @@ Posso confirmar?`;
               animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
               exit={{ opacity: 0, y: 30, scale: 0.9 }}
               transition={{ 
-                duration: 0.8, 
-                ease: [0.22, 1, 0.36, 1] // Smooth ease-out
+                duration: 1.2, 
+                ease: [0.22, 1, 0.36, 1] // Even smoother ease-out
               }}
               className="absolute bottom-[88px] right-0 w-[300px] md:w-[380px] bg-white/95 backdrop-blur-md rounded-sm shadow-3xl border border-white/50 p-6 flex flex-col items-start text-left cursor-default overflow-visible z-[101]"
               onClick={(e) => e.stopPropagation()}
