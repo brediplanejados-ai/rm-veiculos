@@ -138,17 +138,21 @@ export const ChatWidget: React.FC = () => {
       switch (step) {
         case 'NAME':
           setData(prev => ({ ...prev, name: userText }));
-          addMessage(`Prazer, ${userText}! Agora, por favor, me informe a placa do seu veículo (ex: ABC-1234 ou ABC1D23):`, 'bot');
+          addMessage(`Prazer, ${userText}! Agora, por favor, me informe a placa do seu veículo (ex: ABC-1234). Se preferir não informar agora, basta digitar "pular":`, 'bot');
           setStep('PLATE');
           break;
         
         case 'PLATE':
-          if (validatePlate(userText)) {
+          if (userText.toLowerCase() === 'pular' || userText.toLowerCase() === 'skip') {
+            setData(prev => ({ ...prev, plate: 'Não informado' }));
+            addMessage("Sem problemas! O que você gostaria de realizar no seu veículo? (Ex: Problema na partida, revisão de ar-condicionado, luz da injeção acesa, etc.)", 'bot');
+            setStep('SERVICE');
+          } else if (validatePlate(userText)) {
             setData(prev => ({ ...prev, plate: userText.toUpperCase() }));
             addMessage("Entendido. O que gostaria de realizar no seu veículo? (Ex: Problema na partida, revisão de ar-condicionado, luz da injeção acesa, etc.)", 'bot');
             setStep('SERVICE');
           } else {
-            addMessage("A placa informada parece inválida. Por favor, digite no formato ABC-1234 ou ABC1D23 (mínimo 7 caracteres).", 'bot');
+            addMessage("A placa informada parece inválida. Por favor, digite no formato ABC-1234 ou digite \"pular\" para continuar.", 'bot');
           }
           break;
 
