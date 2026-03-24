@@ -185,7 +185,7 @@ export default function App() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden bg-zinc-950">
+        <section className="relative min-h-screen lg:h-[85vh] lg:min-h-[600px] flex items-center pt-32 pb-20 overflow-hidden bg-zinc-950">
           <div className="absolute inset-0 z-0">
             <img 
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuBARRMEi6oQ-JCn0OQ49EBv_65zwp53qYmF4NsUSYTyxH0pLFr9Dg3tfnNzc8Ubxj3__mYaeKxatwzcXGd_du_aUDf0op7gUD39VekFEWm726WpiodspD7KEqyZC9xBvRoOsgw013sp124OgGBm-VQ-BXK3KCB09glBrRUK065racSkB_st2K5LnouGhJFYma9UTGstmDuOA--PSsWyRFkVr7nWuCziGRZxDb3VpXBfmtWbsGRQZ9f0TAqZFjMnYjQsY5dH9PsfHc1l" 
@@ -208,7 +208,7 @@ export default function App() {
                   Tecnologia de Ponta
                 </span>
               </div>
-              <h1 className="text-white font-headline text-5xl md:text-7xl font-black leading-tight tracking-tighter text-shadow-md">
+              <h1 className="text-white font-headline text-4xl sm:text-5xl md:text-7xl font-black leading-tight tracking-tighter text-shadow-md">
                 SOLUÇÕES COMPLETAS COM <span className="text-primary-container">PRECISÃO</span> E CONFIANÇA.
               </h1>
               <p className="text-zinc-300 text-lg md:text-xl font-medium leading-relaxed text-shadow-sm">
