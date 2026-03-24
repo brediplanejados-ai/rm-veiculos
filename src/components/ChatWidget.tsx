@@ -296,24 +296,24 @@ Posso confirmar?`;
 
             {/* Input */}
             <div className="p-4 bg-white border-t border-zinc-100">
-              {step === 'DATE' ? (
-                <input 
-                  type="date"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  className="w-full p-4 bg-zinc-50 border border-zinc-200 rounded-sm focus:outline-none focus:border-primary transition-colors text-sm font-body"
-                />
-              ) : step === 'TIME' ? (
-                <input 
-                  type="time"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  className="w-full p-4 bg-zinc-50 border border-zinc-200 rounded-sm focus:outline-none focus:border-primary transition-colors text-sm font-body"
-                />
-              ) : (
-                <div className="relative">
+              <div className="relative">
+                {step === 'DATE' ? (
+                  <input 
+                    type="date"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                    className="w-full p-4 pr-12 bg-zinc-50 border border-zinc-200 rounded-sm focus:outline-none focus:border-primary transition-colors text-sm font-body"
+                  />
+                ) : step === 'TIME' ? (
+                  <input 
+                    type="time"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                    className="w-full p-4 pr-12 bg-zinc-50 border border-zinc-200 rounded-sm focus:outline-none focus:border-primary transition-colors text-sm font-body"
+                  />
+                ) : (
                   <input
                     type="text"
                     value={input}
@@ -323,15 +323,15 @@ Posso confirmar?`;
                     disabled={step === 'CONFIRMED'}
                     className="w-full p-4 pr-12 bg-zinc-50 border border-zinc-200 rounded-sm focus:outline-none focus:border-primary transition-colors text-sm font-body placeholder:text-zinc-400"
                   />
-                  <button
-                    onClick={handleSend}
-                    disabled={!input.trim() || step === 'CONFIRMED'}
-                    className="absolute right-2 top-2 w-10 h-10 flex items-center justify-center text-primary hover:bg-zinc-100 rounded-full transition-colors disabled:opacity-30"
-                  >
-                    <Send className="w-5 h-5" />
-                  </button>
-                </div>
-              )}
+                )}
+                <button
+                  onClick={handleSend}
+                  disabled={!input.trim() || step === 'CONFIRMED'}
+                  className="absolute right-2 top-2 w-10 h-10 flex items-center justify-center text-primary hover:bg-zinc-100 rounded-full transition-colors disabled:opacity-30"
+                >
+                  <Send className="w-5 h-5" />
+                </button>
+              </div>
               
               <div className="flex justify-between items-center mt-3">
                 <div className="flex gap-2">
