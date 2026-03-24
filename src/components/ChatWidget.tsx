@@ -31,6 +31,7 @@ export const ChatWidget: React.FC = () => {
   const [input, setInput] = useState('');
   const [data, setData] = useState<AppointmentData>({ name: '', plate: '', service: '', date: '', time: '' });
   const [messages, setMessages] = useState<Message[]>([]);
+  const [showBubble, setShowBubble] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -85,12 +86,23 @@ export const ChatWidget: React.FC = () => {
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
+      setShowBubble(false); // Hide proactive bubble when chat is fully opened
       setTimeout(() => {
         addMessage("Olá! Bem-vindo ao atendimento da RM Auto Center. Sou seu assistente virtual. Para agendar seu serviço, por favor, me informe seu nome completo:", 'bot');
         setStep('NAME');
       }, 500);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isOpen) {
+        setShowBubble(true);
+        playPopSound('open');
+      }
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const validatePlate = (plate: string) => {
     if (plate.length < 7) return false;
@@ -255,11 +267,53 @@ Posso confirmar?`;
       {/* Botão Flutuante */}
       <button
         onClick={() => {
-          if (!isOpen) playPopSound('open');
+          if (!isOpen) {
+            playPopSound('open');
+            setShowBubble(false);
+          }
           setIsOpen(!isOpen);
         }}
         className="fixed bottom-6 right-6 z-[100] w-16 h-16 flex items-center justify-center rounded-full precision-gradient text-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group"
       >
+        {/* Proactive Speech Bubble */}
+        <AnimatePresence>
+          {showBubble && !isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.8 }}
+              className="absolute bottom-20 right-0 w-[300px] md:w-[350px] bg-white/90 backdrop-blur-md rounded-sm shadow-3xl border border-white/50 p-6 flex flex-col items-start text-left cursor-default overflow-visible"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowBubble(false);
+                }}
+                className="absolute top-2 right-2 p-1 text-zinc-400 hover:text-zinc-900 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-primary">Assistente Online RM</span>
+              </div>
+              <p className="text-zinc-800 text-sm font-medium leading-relaxed mb-4">
+                Olá! Precisa de manutenção? Estou aqui para te ajudar a agendar a avaliação do seu veículo agora mesmo.
+              </p>
+              <a 
+                href="https://wa.me/5515991675075?text=Olá,%20preciso%20de%20ajuda%20com%20meu%20veículo."
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="precision-gradient text-white px-5 py-3 rounded-sm text-xs font-bold uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-105 transition-transform text-center w-full sm:w-auto"
+              >
+                Falar com Consultor
+              </a>
+              <div className="absolute bottom-[-10px] right-6 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/90" />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <AnimatePresence mode='wait'>
           {isOpen ? (
