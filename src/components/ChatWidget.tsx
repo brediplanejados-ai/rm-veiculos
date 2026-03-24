@@ -307,15 +307,17 @@ Posso confirmar?`;
               <p className="text-zinc-800 text-sm font-medium leading-relaxed mb-4">
                 Olá! Precisa de manutenção? Estou aqui para te ajudar a agendar a avaliação do seu veículo agora mesmo.
               </p>
-              <a 
-                href="https://wa.me/5515991675075?text=Olá,%20preciso%20de%20ajuda%20com%20meu%20veículo."
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowBubble(false);
+                  setIsOpen(true);
+                  playPopSound('open');
+                }}
                 className="precision-gradient text-white px-5 py-3 rounded-sm text-xs font-bold uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-105 transition-transform text-center w-full sm:w-auto"
               >
                 Falar com Consultor
-              </a>
+              </button>
               <div className="absolute bottom-[-10px] right-6 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/90" />
             </motion.div>
           )}
