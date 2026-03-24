@@ -322,7 +322,7 @@ Posso confirmar?`;
                 }}
                 className="precision-gradient text-white px-5 py-3 rounded-sm text-xs font-bold uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-105 transition-transform text-center w-full sm:w-auto"
               >
-                Falar com Consultor
+                Agendar Avaliação
               </button>
               <div className="absolute bottom-[-10px] right-6 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/90" />
             </motion.div>
